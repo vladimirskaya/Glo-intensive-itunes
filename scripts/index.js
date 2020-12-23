@@ -1,3 +1,4 @@
+/* поключение модулей плееров */
 import { radioPlayerInit } from './radioPlayer.js';
 import { videoPlayerInit } from './videoPlayer.js';
 import { musicPlayerInit } from './musicPlayer.js';
@@ -12,7 +13,6 @@ const deactivationPlayer = () => {
     playerBtn.forEach( item => item.classList.remove('active') )
 }
 
-
 playerBtn.forEach((btn, i) => btn.addEventListener('click', () => {
     deactivationPlayer();
     btn.classList.add('active');
@@ -20,7 +20,7 @@ playerBtn.forEach((btn, i) => btn.addEventListener('click', () => {
     })); 
 
 
-
+/*Вызов функций плееров*/
 radioPlayerInit();
 musicPlayerInit();
 videoPlayerInit()
