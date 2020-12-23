@@ -8,6 +8,8 @@ export const videoPlayerInit = () => {
     const videoProgress = document.querySelector('.video-progress');
     const videoTimePassed =document.querySelector('.video-time__passed');
     const videoTimeTotal =document.querySelector('.video-time__total');
+    const videoVolume = document.querySelector('.video-volume');
+
 
     //изменение иконки play/pause при изменении состояния видео
     const toggleIcon = () => {
@@ -37,6 +39,12 @@ export const videoPlayerInit = () => {
 
     //добавление "0" при выводе времени
     const addZero = n => n < 10 ? '0' + n : n;
+
+    //функция регулирования громкости
+    const changeVolume = () => {
+        const valueVolume = videoVolume.value;
+        videoPlayer.volume = valueVolume / 100;
+    };
 
     //добавление события при нажатии на картинку видео или на кнопки
     videoPlayer.addEventListener('click', togglePlay);
@@ -69,11 +77,13 @@ export const videoPlayerInit = () => {
     });
 
     //функция переключения видео на заданный участок с помощью бегунка 
-    videoProgress.addEventListener('change', () => {
+    videoProgress.addEventListener('input', () => {
         const duration = videoPlayer.duration;
         const value = videoProgress.value;
 
         videoPlayer.currentTime = (value * duration) / 100;
     });
 
+    videoVolume.addEventListener('input', changeVolume);
+    changeVolume();
 }
